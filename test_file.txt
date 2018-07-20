@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 Hello!
 Christian
+=======
+Hello! Winnie love food
+>>>>>>> ed6412e28d789f7c5eae88bf2c8b05d54a5abf8c
