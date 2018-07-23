@@ -1,5 +1,19 @@
-body {
-  background-image: url("https://i.pinimg.com/736x/4d/48/23/4d482327212d9a4c116af9f95a3f063c--pretty-iphone-wallpapers-backgrounds-wallpapers.jpg");
+body{
+  background-color:  	#AFEEEE;
+}
+h1{
+  text-align: center;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+h2{
+  text-align: center;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+p {
+  color: 		#800080;
+  text-align: center;
+  font-size: 25px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 h1 {
