@@ -1,16 +1,17 @@
 body{
-  background-image:  url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/calm-reflective-water-background_bjnehswwh__F0000.png");
+  background-color:  	#AFEEEE;
 }
 h1{
   text-align: center;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
-h3{
+h2{
   text-align: center;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 p {
+  color: 		#800080;
   text-align: center;
   font-size: 25px;
-  font-family: "Trebuchet MS", Helvetica, sans-serif
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
