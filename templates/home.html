@@ -6,13 +6,15 @@
     <link rel="stylesheet" href="/static/themes/home.css">
   </head>
   <body>
-    <img src="./static/themes/logo.jpg"/>
+    <div class="logo">
+     <img id="pic" src="./static/themes/logo.jpg"/>
+    </div>
     {% if user %} <!-- START: Winnie did this -->
       <h1> Welcome, {{nickname}}! </h1>
       <br>
       <a href = "{{logout_url}}">Log out</a>
     {% else %}
-      <h1> Welcome </h1>
+      <h1> Welcome! </h1>
       <br>
       <a href = "{{login_url}}">Log in</a>
     {% endif %} <!-- END: Winnie did this -->
