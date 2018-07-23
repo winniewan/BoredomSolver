@@ -10,11 +10,11 @@ jinja_current_dir = jinja2.Environment(
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_current_dir.get_template("home.html")
+        template = jinja_current_dir.get_template("/templates/home.html")
         self.response.write(template.render())
 class AboutHandler(webapp2.RequestHandler):
     def get(self):
-        template = jinja_current_dir.get_template("about.html")
+        template = jinja_current_dir.get_template("/templates/about.html")
         self.response.write(template.render())
 app = webapp2.WSGIApplication([
     ('/', MainHandler), ('/home', MainHandler), ('/about', AboutHandler),
