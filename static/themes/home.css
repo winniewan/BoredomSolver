@@ -24,12 +24,19 @@ a {
 }
 
 .logo {
+  border: 1px solid purple;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 
 }
 
 #pic {
-  height: 200px;
+  border: 1px solid purple;
+  height: 150px;
+  width: 200px;
+}
+nav {
+  border: 1px solid purple;
 
 }
