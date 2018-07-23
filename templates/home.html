@@ -8,20 +8,23 @@
   <body>
     <div class="logo">
      <img id="pic" src="./static/themes/logo.jpg"/>
+     <nav>
+       <a href="/about">About Us</a>
+       {% if user %} <!-- START: Winnie did this -->
+         <a href = "{{logout_url}}">Log out</a>
+       {% else %}
+         <a href = "{{login_url}}">Log in</a>
+       {% endif %} <!-- END: Winnie did this -->
+     </nav>
     </div>
     {% if user %} <!-- START: Winnie did this -->
       <h1> Welcome, {{nickname}}! </h1>
-      <br>
-      <a href = "{{logout_url}}">Log out</a>
     {% else %}
       <h1> Welcome! </h1>
-      <br>
-      <a href = "{{login_url}}">Log in</a>
     {% endif %} <!-- END: Winnie did this -->
     <div>
      <p>Welcome to our Plan Finder! We are here to solve all of your boredom needs!</p>
    </div>
-   <a href="/about">About Us</a>
    <script src="/static/scripts/home.js"></script>
   </body>
 </html>
