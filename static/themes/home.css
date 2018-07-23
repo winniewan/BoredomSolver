@@ -1,0 +1,18 @@
+body {
+  background-image: image("https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwj1_I2awbXcAhWCmeAKHRF3BPMQjRx6BAgBEAU&url=https%3A%2F%2Fwallpapertag.com%2Ffun-backgrounds&psig=AOvVaw3JATfcwvhCtanouRnNOCdK&ust=1532445086807117");
+}
+
+h1 {
+  text-align: center;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+
+}
+
+p {
+font-size: 25px
+
+}
+
+a {
+  font-size: 30px
+}
