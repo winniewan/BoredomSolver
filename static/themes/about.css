@@ -15,7 +15,7 @@ p {
   font-size: 25px;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
-.button {
+button {
   background-color: #4CAF50;
   border: none;
   color: white;
