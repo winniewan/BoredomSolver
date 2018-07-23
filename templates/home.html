@@ -7,6 +7,15 @@
   </head>
   <body>
     <h1>Plan Finder</h1>
+    {% if user %} <!-- START: Winnie did this -->
+      <h1> Welcome, {{nickname}}! </h1>
+      <br>
+      <a href = "{{logout_url}}">Log out</a>
+    {% else %}
+      <h1> Welcome </h1>
+      <br>
+      <a href = "{{login_url}}">Log in</a>
+    {% endif %} <!-- END: Winnie did this -->
     <div>
      <p>Welcome to our Plan Finder! We are here to solve all of your boredom needs!</p>
    </div>
