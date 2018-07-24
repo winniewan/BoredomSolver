@@ -35,7 +35,14 @@ a {
   height: 150px;
   width: 200px;
 }
-nav {
+.finder {
+  border: 2px solid purple;
+  margin: 100px;
+  display: flex;
+  justify-content:space-around;
 
+}
+#finder {
+  border: 2px solid purple;
 
 }

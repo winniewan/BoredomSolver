@@ -19,18 +19,36 @@
      </nav>
     </div>
     {% if user %} <!-- START: Winnie did this -->
+<<<<<<< HEAD
       <h1> Welcome, {{nickname}}!</h1>
       <form>
         Write a show <br>
         <input type="text" name="hobby"><br>
 
       </form>
+=======
+      <h1> Welcome, {{nickname}}! </h1>
+>>>>>>> a00239acc48377cdd29fa11ee2df64718c7bcb67
     {% else %}
       <h1> Welcome to our Plan Finder! </h1>
     {% endif %} <!-- END: Winnie did this -->
     <div>
      <p>We are here to solve all of your boredom needs!</p>
    </div>
+<<<<<<< HEAD
+   <div class="finder">
+     <nav id="finder">
+     {% if user %}
+        <a href="/places">Find Places</a>
+        <a href="/people">Find People</a>
+     {% else %}
+
+      {% endif %}
+      </nav>
+   </div>
+=======
+   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+>>>>>>> bb7108bd6a1f9d232d6311bac727eaf1af5d6709
    <script src="/static/scripts/home.js"></script>
   </body>
 </html>
