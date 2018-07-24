@@ -103,5 +103,6 @@ class PeopleHandler(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainHandler), ('/home', MainHandler), ('/about', AboutHandler),
     ('/dashboard', DashboardHandler), ('/view_profile', ViewProfileHandler),
-    ('/edit_profile', EditProfileHandler), ('/places',PlacesHandler),('/people',PeopleHandler),
+    ('/edit_profile', EditProfileHandler), ('/places',PlacesHandler),
+    ('/people',PeopleHandler),
 ], debug=True)
