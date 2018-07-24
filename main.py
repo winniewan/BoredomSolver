@@ -62,17 +62,16 @@ class EditProfileHandler(webapp2.RequestHandler):
 
         profile = Post(bio = bio, location = location)
         profile.put()
-
         check_user = User.query(User.username == username).fetch()
         if check_user:
-            check_user[0].bio = bio
+            check_user[0].profile = profile.key
         else:
             user = User(username = username , profile = profile.key)
             user.put()
 
         template_vars = {
             'username' : username ,
-            'bio' : bio
+            'bio' : profile
         }
         template = jinja_current_dir.get_template('/templates/view_profile.html')
         self.response.write(template.render(template_vars))
