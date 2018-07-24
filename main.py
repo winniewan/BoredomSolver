@@ -42,8 +42,11 @@ class DashboardHandler(webapp2.RequestHandler):
             self.redirect("/home")
         else:
             logout_url = users.create_logout_url('/')
+        template_vars = {
+            "logout_url": logout_url,
+        }
         template = jinja_current_dir.get_template("/templates/dashboard.html")
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 class Post(ndb.Model):
     bio = ndb.TextProperty()
     location = ndb.StringProperty()
@@ -57,8 +60,11 @@ class EditProfileHandler(webapp2.RequestHandler):
             self.redirect("/home")
         else:
             logout_url = users.create_logout_url('/')
+        template_vars = {
+            "logout_url": logout_url,
+        }
         template = jinja_current_dir.get_template("/templates/edit_profile.html")
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
     def post(self):
         username = self.request.get('username')
         bio = self.request.get('bio')
@@ -87,6 +93,10 @@ class ViewProfileHandler(webapp2.RequestHandler):
             self.redirect("/home")
         else:
             logout_url = users.create_logout_url('/')
+        template_vars1 = {
+            "logout_url": logout_url,
+        }
+        self.response.write(template.render(template_vars))
         username = self.request.get('username')
         check_users = User.query(User.username == username).fetch()
         if check_users:
@@ -110,8 +120,11 @@ class PlacesHandler(webapp2.RequestHandler):
             self.redirect("/home")
         else:
             logout_url = users.create_logout_url('/')
+        template_vars = {
+            "logout_url": logout_url,
+        }
         template = jinja_current_dir.get_template("/templates/places.html")
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 class PeopleHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -119,8 +132,11 @@ class PeopleHandler(webapp2.RequestHandler):
             self.redirect("/home")
         else:
             logout_url = users.create_logout_url('/')
+        template_vars = {
+            "logout_url": logout_url,
+        }
         template = jinja_current_dir.get_template("/templates/people.html")
-        self.response.write(template.render())
+        self.response.write(template.render(template_vars))
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler), ('/home', MainHandler), ('/about', AboutHandler),
