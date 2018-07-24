@@ -97,6 +97,7 @@ class PlacesHandler(webapp2.RequestHandler):
         self.response.write(template.render())
 class PeopleHandler(webapp2.RequestHandler):
     def get(self):
+        
         template = jinja_current_dir.get_template("/templates/people.html")
         self.response.write(template.render())
 
