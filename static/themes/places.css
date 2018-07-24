@@ -79,7 +79,9 @@ html, body {
 }
 .center-div
 {
+  margin: 50px;
   display: flex;
   justify-content: center;
+
 
 }
