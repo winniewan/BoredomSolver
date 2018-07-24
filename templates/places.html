@@ -4,6 +4,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Places Search Box</title>
+    <link rel="stylesheet" href="/static/themes/home.css">
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -89,6 +90,19 @@
     </style>
   </head>
   <body>
+    <div class="logo">
+     <img id="pic" src="./static/themes/logo.jpg"/>
+     <p class="spacer"></p>
+     <nav>
+       <a href="/home">Home</a>
+       <a href="/about">About Us</a>
+       {% if user %}
+         <a href = "{{logout_url}}">Sign out</a>
+       {% else %}
+         <a href = "{{login_url}}">Sign in</a>
+       {% endif %}
+     </nav>
+   </div>
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
     <div class="center-div"></div>
