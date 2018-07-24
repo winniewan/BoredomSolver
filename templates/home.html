@@ -12,19 +12,19 @@
      <nav>
        <a href="/about">About Us</a>
        {% if user %} <!-- START: Winnie did this -->
-         <a href = "{{logout_url}}">Log out</a>
+         <a href = "{{logout_url}}">Sign out</a>
        {% else %}
-         <a href = "{{login_url}}">Log in</a>
+         <a href = "{{login_url}}">Sign in</a>
        {% endif %} <!-- END: Winnie did this -->
      </nav>
     </div>
     {% if user %} <!-- START: Winnie did this -->
       <h1> Welcome, {{nickname}}! </h1>
     {% else %}
-      <h1> Welcome! </h1>
+      <h1> Welcome to our Plan Finder! </h1>
     {% endif %} <!-- END: Winnie did this -->
     <div>
-     <p>Welcome to our Plan Finder! We are here to solve all of your boredom needs!</p>
+     <p>We are here to solve all of your boredom needs!</p>
    </div>
    <script src="/static/scripts/home.js"></script>
   </body>

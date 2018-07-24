@@ -28,7 +28,6 @@ class MainHandler(webapp2.RequestHandler):
             "nickname": nickname,
             "logout_url": logout_url,
             "login_url": login_url,
-
         }
         template = jinja_current_dir.get_template("/templates/home.html")
         self.response.write(template.render(template_vars))
@@ -36,6 +35,52 @@ class AboutHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_current_dir.get_template("/templates/about.html")
         self.response.write(template.render())
+class DashboardHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_current_dir.get_template("/templates/dashboard.html")
+        self.response.write(template.render())
+class User(ndb.Model):
+    username = ndb.StringProperty()
+    bio = ndb.KeyProperty(kind = Post, repeated = True)
+class Post(ndb.Model):
+    content = ndb.TextProperty()
+class EditProfileHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_current_dir.get_template("/templates/edit_profile.html")
+        self.response.write(template.render())
+    def post(self):
+        username = self.request.get('username')
+        bio = self.request.get('bio')
+
+        bio = Post(content = bio)
+        bio.put()
+
+        check_user = User.query(User.username == username).fetch()
+        user = User(username = username , bio = [bio.key])
+        if check_user:
+            check_user[0].bio.append(bio.key)
+        else:
+            user.put()
+
+        bios = []
+        for bio_key in user.bio:
+            bios.append(bio_key.get())
+
+        template_vars = {
+            'username' : username ,
+            'bios' : bios
+        }
+        template = jinja_current_dir.get_template('view_profile.html')
+        self.response.write(template.render(template_vars))
+
+class ViewProfileHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_current_dir.get_template("/templates/view_profile.html")
+        self.response.write(template.render())
+
+        
 app = webapp2.WSGIApplication([
     ('/', MainHandler), ('/home', MainHandler), ('/about', AboutHandler),
+    ('/dashboard', DashboardHandler), ('/view_profile', ViewProfileHandler),
+    ('/edit_profile', EditProfileHandler),
 ], debug=True)
