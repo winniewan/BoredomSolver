@@ -20,12 +20,22 @@
      </nav>
     </div>
     {% if user %} <!-- START: Winnie did this -->
-      <h1> Welcome, {{nickname}}!</h1>
+      <h1> Welcome, {{nickname}}! </h1>
     {% else %}
       <h1> Welcome to our Plan Finder! </h1>
     {% endif %} <!-- END: Winnie did this -->
     <div>
      <p>We are here to solve all of your boredom needs!</p>
+   </div>
+   <div class="finder">
+     <nav id="finder">
+     {% if user %}
+        <a href="/places">Find Places</a>
+        <a href="/people">Find People</a>
+     {% else %}
+
+      {% endif %}
+      </nav>
    </div>
    <script src="/static/scripts/home.js"></script>
   </body>
