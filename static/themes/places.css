@@ -2,7 +2,7 @@
   height: 100%;
 }
 /* Optional: Makes the sample page fill the window. */
- body {
+html, body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -76,4 +76,10 @@
 }
 #target {
   width: 345px;
+}
+.center-div
+{
+     margin: 0 auto;
+     width: 100px;
+     height: 100px;
 }
