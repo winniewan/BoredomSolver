@@ -64,7 +64,7 @@ class EditProfileHandler(webapp2.RequestHandler):
 
         bios = []
         for bio_key in user.bio:
-            bios.append(bio_key.get())
+            bios.append(bio_key.get().bio)
 
         template_vars = {
             'username' : username ,
