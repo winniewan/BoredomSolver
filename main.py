@@ -40,6 +40,8 @@ class DashboardHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if not user:
             self.redirect("/home")
+        else:
+            logout_url = users.create_logout_url('/')
         template = jinja_current_dir.get_template("/templates/dashboard.html")
         self.response.write(template.render())
 class Post(ndb.Model):
@@ -53,6 +55,8 @@ class EditProfileHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if not user:
             self.redirect("/home")
+        else:
+            logout_url = users.create_logout_url('/')
         template = jinja_current_dir.get_template("/templates/edit_profile.html")
         self.response.write(template.render())
     def post(self):
@@ -81,6 +85,8 @@ class ViewProfileHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if not user:
             self.redirect("/home")
+        else:
+            logout_url = users.create_logout_url('/')
         username = self.request.get('username')
         check_users = User.query(User.username == username).fetch()
         if check_users:
@@ -102,6 +108,8 @@ class PlacesHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if not user:
             self.redirect("/home")
+        else:
+            logout_url = users.create_logout_url('/')
         template = jinja_current_dir.get_template("/templates/places.html")
         self.response.write(template.render())
 class PeopleHandler(webapp2.RequestHandler):
@@ -109,6 +117,8 @@ class PeopleHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if not user:
             self.redirect("/home")
+        else:
+            logout_url = users.create_logout_url('/')
         template = jinja_current_dir.get_template("/templates/people.html")
         self.response.write(template.render())
 
