@@ -91,10 +91,17 @@ class ViewProfileHandler(webapp2.RequestHandler):
         }
         template = jinja_current_dir.get_template('/templates/view_profile.html')
         self.response.write(template.render(template_vars))
-
+class PlacesHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_current_dir.get_template("/templates/places.html")
+        self.response.write(template.render())
+class PeopleHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_current_dir.get_template("/templates/people.html")
+        self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler), ('/home', MainHandler), ('/about', AboutHandler),
     ('/dashboard', DashboardHandler), ('/view_profile', ViewProfileHandler),
-    ('/edit_profile', EditProfileHandler),
+    ('/edit_profile', EditProfileHandler), ('/places',PlacesHandler),('/people',PeopleHandler),
 ], debug=True)
