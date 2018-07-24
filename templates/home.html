@@ -13,14 +13,14 @@
        <a href="/home">Home</a>
        <a href="/about">About Us</a>
        <a href="/view_profile">Profile</a>
-       {% if user %} <!-- START: Winnie did this -->
+       {% if email %} <!-- START: Winnie did this -->
          <a href = "{{logout_url}}">Sign out</a>
        {% else %}
          <a href = "{{login_url}}">Sign in</a>
        {% endif %} <!-- END: Winnie did this -->
      </nav>
     </div>
-    {% if user %} <!-- START: Winnie did this -->
+    {% if email %} <!-- START: Winnie did this -->
       <h1> Welcome, {{nickname}}!</h1>
     {% else %}
       <h1> Welcome to our Plan Finder! </h1>

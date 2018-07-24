@@ -12,19 +12,19 @@ jinja_current_dir = jinja2.Environment(
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        user = users.get_current_user()
+        email = users.get_current_user()
         #Assign these to something so the python runs
         nickname = None
         logout_url = None
         login_url = None
 
-        if user:
-            nickname = user.nickname()
+        if email:
+            nickname = email.nickname()
             logout_url = users.create_logout_url('/')
         else:
             login_url = users.create_login_url('/')
         template_vars = {
-            "user": user,
+            "email": email,
             "nickname": nickname,
             "logout_url": logout_url,
             "login_url": login_url,
@@ -37,8 +37,8 @@ class AboutHandler(webapp2.RequestHandler):
         self.response.write(template.render())
 class DashboardHandler(webapp2.RequestHandler):
     def get(self):
-        user = users.get_current_user()
-        if not user:
+        email = users.get_current_user()
+        if not email:
             self.redirect("/home")
         else:
             logout_url = users.create_logout_url('/')
@@ -47,16 +47,15 @@ class DashboardHandler(webapp2.RequestHandler):
         }
         template = jinja_current_dir.get_template("/templates/dashboard.html")
         self.response.write(template.render(template_vars))
-class Post(ndb.Model):
+class User(ndb.Model):
+    email = ndb.StringProperty()
+    username = ndb.StringProperty()
     bio = ndb.TextProperty()
     location = ndb.StringProperty()
-class User(ndb.Model):
-    username = ndb.StringProperty()
-    profile = ndb.KeyProperty(kind = "Post")
 class EditProfileHandler(webapp2.RequestHandler):
     def get(self):
-        user = users.get_current_user()
-        if not user:
+        email = users.get_current_user()
+        if not email:
             self.redirect("/home")
         else:
             logout_url = users.create_logout_url('/')
@@ -66,57 +65,37 @@ class EditProfileHandler(webapp2.RequestHandler):
         template = jinja_current_dir.get_template("/templates/edit_profile.html")
         self.response.write(template.render(template_vars))
     def post(self):
+        email = users.get_current_user()
         username = self.request.get('username')
         bio = self.request.get('bio')
         location = self.request.get('location')
 
-        profile = Post(bio = bio, location = location)
-        profile.put()
-        check_user = User.query(User.username == username).fetch()
-        if check_user:
-            check_user[0].profile = profile.key
-        else:
-            user = User(username = username , profile = profile.key)
-            user.put()
+        current_user = User(email = email.email(), username = username, bio = bio, location = location)
+        current_user.put()
 
-        template_vars = {
-            'username' : username ,
-            'bio' : profile
-        }
-        template = jinja_current_dir.get_template('/templates/view_profile.html')
-        self.response.write(template.render(template_vars))
+        self.redirect("/view_profile")
 
 class ViewProfileHandler(webapp2.RequestHandler):
     def get(self):
-        user = users.get_current_user()
-        if not user:
+        email = users.get_current_user()
+        if not email:
             self.redirect("/home")
         else:
-            logout_url = users.create_logout_url('/')
-        template_vars1 = {
-            "logout_url": logout_url,
-        }
-        self.response.write(template.render(template_vars))
-        username = self.request.get('username')
-        check_users = User.query(User.username == username).fetch()
-        if check_users:
-            user = check_users[0]
-        else:
-            self.redirect("/edit_profile")
-        bios = []
-        for bio_key in user.bio:
-            bios.append(bio_key.get())
-
-        template_vars = {
-            'username' : username ,
-            'bios' : bios
-        }
-        template = jinja_current_dir.get_template('/templates/view_profile.html')
-        self.response.write(template.render(template_vars))
+            current_user = User.query(User.email == email.email()).fetch()
+            if len(current_user) == 0:
+                self.redirect("/edit_profile")
+            else:
+                biography = current_user[0].bio
+                template_vars = {
+                    "username": current_user[0].username,
+                    "biography": biography, 
+                }
+                template = jinja_current_dir.get_template('/templates/view_profile.html')
+                self.response.write(template.render(template_vars))
 class PlacesHandler(webapp2.RequestHandler):
     def get(self):
-        user = users.get_current_user()
-        if not user:
+        email = users.get_current_user()
+        if not email:
             self.redirect("/home")
         else:
             logout_url = users.create_logout_url('/')
@@ -127,8 +106,8 @@ class PlacesHandler(webapp2.RequestHandler):
         self.response.write(template.render(template_vars))
 class PeopleHandler(webapp2.RequestHandler):
     def get(self):
-        user = users.get_current_user()
-        if not user:
+        email = users.get_current_user()
+        if not email:
             self.redirect("/home")
         else:
             logout_url = users.create_logout_url('/')
@@ -137,7 +116,6 @@ class PeopleHandler(webapp2.RequestHandler):
         }
         template = jinja_current_dir.get_template("/templates/people.html")
         self.response.write(template.render(template_vars))
-
 app = webapp2.WSGIApplication([
     ('/', MainHandler), ('/home', MainHandler), ('/about', AboutHandler),
     ('/dashboard', DashboardHandler), ('/view_profile', ViewProfileHandler),
