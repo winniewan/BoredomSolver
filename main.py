@@ -41,9 +41,10 @@ class DashboardHandler(webapp2.RequestHandler):
         self.response.write(template.render())
 class Post(ndb.Model):
     bio = ndb.TextProperty()
+    location = ndb.StringProperty()
 class User(ndb.Model):
     username = ndb.StringProperty()
-    bio = ndb.KeyProperty(kind = Post, repeated = True)
+    profile = ndb.KeyProperty(kind = "Post")
 class EditProfileHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_current_dir.get_template("/templates/edit_profile.html")
@@ -51,24 +52,21 @@ class EditProfileHandler(webapp2.RequestHandler):
     def post(self):
         username = self.request.get('username')
         bio = self.request.get('bio')
+        location = self.request.get('location')
 
-        bio = Post(bio = bio)
-        bio.put()
+        profile = Post(bio = bio, location = location)
+        profile.put()
 
         check_user = User.query(User.username == username).fetch()
-        user = User(username = username , bio = [bio.key])
         if check_user:
-            check_user[0].bio.append(bio.key)
+            check_user[0].bio = bio
         else:
+            user = User(username = username , profile = profile.key)
             user.put()
-
-        bios = []
-        for bio_key in user.bio:
-            bios.append(bio_key.get().bio)
 
         template_vars = {
             'username' : username ,
-            'bios' : bios
+            'bio' : bio
         }
         template = jinja_current_dir.get_template('/templates/view_profile.html')
         self.response.write(template.render(template_vars))
