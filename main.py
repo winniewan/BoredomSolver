@@ -52,7 +52,7 @@ class EditProfileHandler(webapp2.RequestHandler):
         username = self.request.get('username')
         bio = self.request.get('bio')
 
-        bio = Post(content = bio)
+        bio = Post(bio = bio)
         bio.put()
 
         check_user = User.query(User.username == username).fetch()
