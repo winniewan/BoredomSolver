@@ -39,11 +39,11 @@ class DashboardHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_current_dir.get_template("/templates/dashboard.html")
         self.response.write(template.render())
+class Post(ndb.Model):
+    bio = ndb.TextProperty()
 class User(ndb.Model):
     username = ndb.StringProperty()
     bio = ndb.KeyProperty(kind = Post, repeated = True)
-class Post(ndb.Model):
-    content = ndb.TextProperty()
 class EditProfileHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_current_dir.get_template("/templates/edit_profile.html")
