@@ -36,13 +36,11 @@ a {
   width: 200px;
 }
 .finder {
-  border: 2px solid purple;
   margin: 100px;
-  display: flex;
-  justify-content:space-around;
+
 
 }
 #finder {
-  border: 2px solid purple;
-
+  display: flex;
+  justify-content: space-evenly;
 }
