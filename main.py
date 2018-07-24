@@ -37,6 +37,9 @@ class AboutHandler(webapp2.RequestHandler):
         self.response.write(template.render())
 class DashboardHandler(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect("/home")
         template = jinja_current_dir.get_template("/templates/dashboard.html")
         self.response.write(template.render())
 class Post(ndb.Model):
@@ -47,6 +50,9 @@ class User(ndb.Model):
     profile = ndb.KeyProperty(kind = "Post")
 class EditProfileHandler(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect("/home")
         template = jinja_current_dir.get_template("/templates/edit_profile.html")
         self.response.write(template.render())
     def post(self):
@@ -73,6 +79,9 @@ class EditProfileHandler(webapp2.RequestHandler):
 
 class ViewProfileHandler(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect("/home")
         username = self.request.get('username')
         check_users = User.query(User.username == username).fetch()
         if check_users:
@@ -91,10 +100,16 @@ class ViewProfileHandler(webapp2.RequestHandler):
         self.response.write(template.render(template_vars))
 class PlacesHandler(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect("/home")
         template = jinja_current_dir.get_template("/templates/places.html")
         self.response.write(template.render())
 class PeopleHandler(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect("/home")
         template = jinja_current_dir.get_template("/templates/people.html")
         self.response.write(template.render())
 
