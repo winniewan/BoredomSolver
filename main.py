@@ -70,15 +70,32 @@ class EditProfileHandler(webapp2.RequestHandler):
             'username' : username ,
             'bios' : bios
         }
-        template = jinja_current_dir.get_template('view_profile.html')
+        template = jinja_current_dir.get_template('/templates/view_profile.html')
         self.response.write(template.render(template_vars))
 
 class ViewProfileHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_current_dir.get_template("/templates/view_profile.html")
         self.response.write(template.render())
+        def get(self):
+            username = self.request.get('username')
+            check_authors = Author.query(Author.username == username).fetch()
+            if check_authors:
+                author=check_authors[0]
+            else:
+                self.redirect("/create_post")
+            blog_posts = []
+            for blog_post_key in author.blog_post:
+                blog_posts.append(blog_post_key.get())
 
-        
+            template_vars = {
+                'username' : username ,
+                'blog_posts' : blog_posts
+            }
+            template = jinja_current_dir.get_template('/templates/view_profile.html')
+            self.response.write(template.render(template_vars))
+
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler), ('/home', MainHandler), ('/about', AboutHandler),
     ('/dashboard', DashboardHandler), ('/view_profile', ViewProfileHandler),
