@@ -6,17 +6,12 @@
     <link rel="stylesheet" href="/static/themes/home.css">
   </head>
   <body>
-    List of PPL
     <div class="logo">
      <img id="pic" src="./static/themes/logo.jpg"/>
      <p class="spacer"></p>
      <nav>
        <a href="/about">About Us</a>
-       {% if user %}
-         <a href = "{{logout_url}}">Sign out</a>
-       {% else %}
-         <a href = "{{login_url}}">Sign in</a>
-       {% endif %}
+       <a href = "{{logout_url}}">Sign out</a>
      </nav>
   </body>
 </html>
