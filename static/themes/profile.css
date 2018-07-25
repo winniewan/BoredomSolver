@@ -1,0 +1,31 @@
+body {
+  background-image: url("https://i.pinimg.com/736x/4d/48/23/4d482327212d9a4c116af9f95a3f063c--pretty-iphone-wallpapers-backgrounds-wallpapers.jpg");
+}
+
+h1 {
+  text-align: center;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.logo {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+#pic {
+
+  height: 150px;
+  width: 200px;
+}
+a {
+  background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+}

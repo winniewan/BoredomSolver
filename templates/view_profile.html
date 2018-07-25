@@ -3,15 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>Profile</title>
+    <link rel="stylesheet" href="/static/themes/profile.css">
   </head>
   <body>
     This is where you look at your profile!
+    <div class="logo">
+     <img id="pic" src="./static/themes/logo.jpg"/>
+     <p class="spacer"></p>
     <nav>
       <a href="/home">Home</a>
       <a href="/about">About Us</a>
       <a href="/view_profile">Profile</a>
       <a href="/edit_profile">Edit Profile</a>
     </nav>
+    </div>
     <h1>{{username}} profile!</h1>
     <p> Username: {{username}} </p>
     <div>
