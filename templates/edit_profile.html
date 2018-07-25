@@ -7,6 +7,12 @@
   <body>
     <a href = "{{logout_url}}">Sign out</a>
     <h1>This is where you edit your profile!</h1>
+    <button onclick="goBack()">Go Back</button>
+    <script>
+    function goBack() {
+        window.history.back();
+    }
+    </script>
     <form method="post"> <!-- START: Winnie did this -->
     <div>
       Username: <br>
