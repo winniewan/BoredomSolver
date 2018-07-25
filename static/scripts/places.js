@@ -9,7 +9,29 @@ function initAutocomplete() {
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
+function init(){
+  const initialPosition = {lat: 40.7128, lng: -74.0060};
+  const map = new google.maps.Map(document.getElementById('map'), {
+    center: initialPosition,
+    zoom: 15
+  });
+    const marker = new google.maps.Marker({maps, position:initialPosition });
+    if ('geolocation' in navigator){
+      navigator.geolocation.getCurrentPosition(
+        position => console.log(`Lat: ${position.coords.latitude}) Lng: ${position.coords.longitude}`),
+        err => alert(`Error (${err.code}): ${err.message}`)
+      );
+    } else {
+      alert('Geolocation is not supported by your browser.');
+    }
+    navigator.geolocation.getCurrentPosition(success, error, [options])
+    }
+    navigator.geolocation.getCurrentPosition(
+  // On success
+  position => console.log(`Lat: ${position.coords.latitude} Lng: ${position.coords.longitude}`),
+  // On error
+  err => alert(`Error (${err.code}): ${err.message}`)
+);
   // Bias the SearchBox results towards current map's viewport.
   map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
@@ -45,7 +67,7 @@ function initAutocomplete() {
         anchor: new google.maps.Point(17, 34),
         scaledSize: new google.maps.Size(25, 25)
       };
-
+      document.getElementById("mapsInfo").addEventListner("click",dis)
 
       // Create a marker for each place.
       markers.push(new google.maps.Marker({
