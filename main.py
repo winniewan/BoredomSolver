@@ -103,6 +103,7 @@ class ViewProfileHandler(webapp2.RequestHandler):
         if not email:
             self.redirect("/home")
         else:
+            logout_url = users.create_logout_url('/')
             current_user = User.query(User.email == email.email()).fetch()
             if len(current_user) == 0:
                 self.redirect("/edit_profile")
@@ -110,6 +111,7 @@ class ViewProfileHandler(webapp2.RequestHandler):
                 biography = current_user[0].bio
                 places = current_user[0].place
                 template_vars = {
+                    "logout_url": logout_url,
                     "username": current_user[0].username,
                     "biography": biography,
                     "places": places,
