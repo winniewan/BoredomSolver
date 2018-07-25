@@ -16,10 +16,41 @@
        <a href = "{{logout_url}}">Sign out</a>
      </nav>
    </div>
-   <div class="headings">
+   <div class = "row">
+     <div class = "column">
+        <h1>People</h1>
+        {% for user in users %}
+           <p>{{user.username}}</p>
+            <br>
+        {% endfor %}
+     </div>
+     <div class = "column">
+       <h1>Places</h1>
+       {% for user in users %}
+          <p>{{user.place}}</p>
+          <br>
+       {% endfor %}
+     </div>
+   </div>
+   <style>
+    * {
+      box-sizing: border-box;
+    }
+     .column {
+      float: left;
+      width: 50%;
+      padding: 10px;
+      height: 300px;
+     }
+     .row:after {
+       content: "";
+       display: table;
+       clear: both;
+     }
+   </style>
+   <!-- <div class="headings">
      <h1>Friends</h1>
      <h2></h2>
-     <h1>People Near You</h1>
-   </div>
+     <h1>People Near You</h1> -->
   </body>
 </html>

@@ -135,8 +135,10 @@ class PeopleHandler(webapp2.RequestHandler):
             self.redirect("/home")
         else:
             logout_url = users.create_logout_url('/')
+        all_users = User.query().fetch()
         template_vars = {
             "logout_url": logout_url,
+            "users": all_users,
         }
         template = jinja_current_dir.get_template("/templates/people.html")
         self.response.write(template.render(template_vars))
