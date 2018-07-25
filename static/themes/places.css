@@ -87,3 +87,12 @@ html, body {
 
 
 }
+.info {
+    padding: 1rem;
+    margin: 0;
+}
+
+.info.error {
+    color: #fff;
+    background: #dc3545;
+}

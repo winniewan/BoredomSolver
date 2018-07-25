@@ -32,6 +32,50 @@ function init(){
   // On error
   err => alert(`Error (${err.code}): ${err.message}`)
 );
+const getPositionErrorMessage = code => {
+  switch (code) {
+    case 1:
+      return 'Permission denied.';
+    case 2:
+      return 'Position unavailable.';
+    case 3:
+      return 'Timeout reached.';
+  }
+}
+
+const trackLocation = ({ onSuccess, onError = () => { } }) => {
+  if ('geolocation' in navigator === false) {
+    return onError(new Error('Geolocation is not supported by your browser.'));
+  }
+
+  // Use watchPosition instead.
+  return navigator.geolocation.watchPosition(onSuccess, onError);
+};
+
+function init() {
+  const initialPosition = { lat: 59.325, lng: 18.069 };
+  const map = createMap(initialPosition);
+  const marker = createMarker({ map, position: initialPosition });
+
+  // Use the new trackLocation function.
+  trackLocation({
+    onSuccess: ({ coords: { latitude: lat, longitude: lng } }) => {
+      marker.setPosition({ lat, lng });
+      map.panTo({ lat, lng });
+    },
+    onError: err =>
+      alert(`Error: ${getPositionErrorMessage(err.code) || err.message}`)
+  });
+}
+
+  // Omitted for brevity
+
+  return navigator.geolocation.watchPosition(onSuccess, onError, {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  });
+};
   // Bias the SearchBox results towards current map's viewport.
   map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
@@ -86,4 +130,3 @@ function init(){
     });
 
   });
-}
