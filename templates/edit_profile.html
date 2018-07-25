@@ -6,7 +6,17 @@
     <link rel="stylesheet" href="/static/themes/profile.css">
   </head>
   <body>
-    <a href = "{{logout_url}}">Sign out</a>
+    <div class="logo">
+     <img id="pic" src="./static/themes/logo.jpg"/>
+     <p class="spacer"></p>
+    <nav>
+      <a href="/home">Home</a>
+      <a href="/about">About Us</a>
+      <a href="/view_profile">Profile</a>
+      <a href="/edit_profile">Edit Profile</a>
+    </nav>
+    </div>
+    <!-- <a href = "{{logout_url}}">Sign out</a> -->
     <h1>This is where you edit your profile!</h1>
     <button onclick="goBack()">Go Back</button>
     <script>
