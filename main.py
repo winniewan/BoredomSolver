@@ -72,7 +72,28 @@ class EditProfileHandler(webapp2.RequestHandler):
         bio = self.request.get('bio')
         place = self.request.get('place')
         location = self.request.get('location')
-
+        print "checkkkk"
+        print "username " + username
+        print "email: " , email
+        print bio
+        print place
+        print location
+        if email == " ":
+            email = User.query(User.email.email()).fetch()[0].email
+        if username == " ":
+            username = User.query(User.username).fetch()[0].username
+        if bio == " ":
+            bio = User.query(User.bio).fetch()[0].bio
+        if place == " ":
+            place = User.query(User.place).fetch()[0].place
+        if location == " ":
+            location = User.query(User.location).fetch()[0].location
+        print "hellooooo"
+        print "username " + username
+        print "email: " , email
+        print bio
+        print place
+        print location
         current_user = User(email = email.email(), username = username, bio = bio, place = place, location = location)
         current_user.put()
         time.sleep(0.5)
