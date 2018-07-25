@@ -72,29 +72,27 @@ class EditProfileHandler(webapp2.RequestHandler):
         bio = self.request.get('bio')
         place = self.request.get('place')
         location = self.request.get('location')
-        print "checkkkk"
-        print "username " + username
-        print "email: " , email
-        print bio
-        print place
-        print location
-        if email == " ":
-            email = User.query(User.email.email()).fetch()[0].email
-        if username == " ":
-            username = User.query(User.username).fetch()[0].username
-        if bio == " ":
-            bio = User.query(User.bio).fetch()[0].bio
-        if place == " ":
-            place = User.query(User.place).fetch()[0].place
-        if location == " ":
-            location = User.query(User.location).fetch()[0].location
-        print "hellooooo"
-        print "username " + username
-        print "email: " , email
-        print bio
-        print place
-        print location
-        current_user = User(email = email.email(), username = username, bio = bio, place = place, location = location)
+
+        current_user = User.query(User.email == email.email()).fetch()
+
+        if len(current_user) <= 0:
+            current_user = User(username = username, email = email.email(), bio = bio, place = place, location = location)
+        else:
+            current_user = current_user[0]
+            if username == "":
+                username = current_user.username
+            if bio == "":
+                bio = current_user.bio
+            if place == "":
+                place = current_user.place
+            if location == "":
+                location = current_user.location
+
+            current_user.username = username
+            current_user.bio = bio
+            current_user.place = place
+            current_user.location = location
+
         current_user.put()
         time.sleep(0.5)
         self.redirect("/view_profile")
