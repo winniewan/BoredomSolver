@@ -67,7 +67,6 @@ function init() {
       alert(`Error: ${getPositionErrorMessage(err.code) || err.message}`)
   });
 }
-
   // Omitted for brevity
 
   return navigator.geolocation.watchPosition(onSuccess, onError, {
