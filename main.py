@@ -1,6 +1,7 @@
 import webapp2
 import os
 import jinja2
+import time
 from google.appengine.ext import ndb
 from google.appengine.api import users
 
@@ -72,7 +73,7 @@ class EditProfileHandler(webapp2.RequestHandler):
 
         current_user = User(email = email.email(), username = username, bio = bio, location = location)
         current_user.put()
-
+        time.sleep(0.5)
         self.redirect("/view_profile")
 
 class ViewProfileHandler(webapp2.RequestHandler):
@@ -88,7 +89,7 @@ class ViewProfileHandler(webapp2.RequestHandler):
                 biography = current_user[0].bio
                 template_vars = {
                     "username": current_user[0].username,
-                    "biography": biography, 
+                    "biography": biography,
                 }
                 template = jinja_current_dir.get_template('/templates/view_profile.html')
                 self.response.write(template.render(template_vars))
