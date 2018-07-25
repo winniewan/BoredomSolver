@@ -52,6 +52,7 @@ class User(ndb.Model):
     email = ndb.StringProperty()
     username = ndb.StringProperty()
     bio = ndb.TextProperty()
+    place = ndb.TextProperty()
     location = ndb.StringProperty()
 class EditProfileHandler(webapp2.RequestHandler):
     def get(self):
@@ -69,9 +70,10 @@ class EditProfileHandler(webapp2.RequestHandler):
         email = users.get_current_user()
         username = self.request.get('username')
         bio = self.request.get('bio')
+        place = self.request.get('place')
         location = self.request.get('location')
 
-        current_user = User(email = email.email(), username = username, bio = bio, location = location)
+        current_user = User(email = email.email(), username = username, bio = bio, place = place, location = location)
         current_user.put()
         time.sleep(0.5)
         self.redirect("/view_profile")
@@ -87,9 +89,11 @@ class ViewProfileHandler(webapp2.RequestHandler):
                 self.redirect("/edit_profile")
             else:
                 biography = current_user[0].bio
+                places = current_user[0].place
                 template_vars = {
                     "username": current_user[0].username,
                     "biography": biography,
+                    "places": places,
                 }
                 template = jinja_current_dir.get_template('/templates/view_profile.html')
                 self.response.write(template.render(template_vars))
