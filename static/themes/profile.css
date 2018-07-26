@@ -43,8 +43,8 @@ input[type=text] {
     box-sizing: border-box;
 }
 textarea {
-    width: 25%;
-    height: 150px;
+    width: 50%;
+    height: 100px;
     padding: 12px 20px;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -67,4 +67,8 @@ section {
   display:flex;
   justify-content: center;
   text-align: center;
+}
+div {
+  font-size: 20px;
+
 }
