@@ -32,6 +32,13 @@
           <br>
        {% endfor %}
      </div>
+     <div class = "column">
+       <h1>Profile Links</h1>
+       {% for user in users %}
+          <p><a href="/view_profile?email={{user.email}}">View Profile</a></p>
+        <br>
+       {% endfor %}
+     </div>
    </div>
    <!-- <div class="headings">
      <h1>Friends</h1>

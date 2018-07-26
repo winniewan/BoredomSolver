@@ -100,14 +100,20 @@ class EditProfileHandler(webapp2.RequestHandler):
 class ViewProfileHandler(webapp2.RequestHandler):
     def get(self):
         email = users.get_current_user()
+        current_user = User.query(User.email == email.email()).fetch()
+
         if not email:
             self.redirect("/home")
         else:
             logout_url = users.create_logout_url('/')
             current_user = User.query(User.email == email.email()).fetch()
+            diff_email = self.request.get("email")
+
             if len(current_user) == 0:
                 self.redirect("/edit_profile")
             else:
+                if not diff_email == "":
+                    current_user = User.query(User.email == diff_email).fetch()
                 biography = current_user[0].bio
                 places = current_user[0].place
                 template_vars = {
