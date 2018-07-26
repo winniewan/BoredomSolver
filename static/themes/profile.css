@@ -1,5 +1,5 @@
 body {
-  background-image: url("https://i.pinimg.com/736x/4d/48/23/4d482327212d9a4c116af9f95a3f063c--pretty-iphone-wallpapers-backgrounds-wallpapers.jpg");
+  background-image: url("http://kb4images.com/images/mint-green-wallpaper/35885224-mint-green-wallpaper.jpg");
 }
 
 h1 {
@@ -31,4 +31,24 @@ a {
     text-decoration: none;
     display: inline-block;
     font-size: 30px;
+}
+/* form {
+
+
+} */
+input[type=text] {
+    width: 25%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+textarea {
+    width: 25%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
 }
