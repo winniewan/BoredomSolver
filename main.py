@@ -116,11 +116,13 @@ class ViewProfileHandler(webapp2.RequestHandler):
                     current_user = User.query(User.email == diff_email).fetch()
                 biography = current_user[0].bio
                 places = current_user[0].place
+                email = current_user[0].email 
                 template_vars = {
                     "logout_url": logout_url,
                     "username": current_user[0].username,
                     "biography": biography,
                     "places": places,
+                    "email": email,
                 }
                 template = jinja_current_dir.get_template('/templates/view_profile.html')
                 self.response.write(template.render(template_vars))
