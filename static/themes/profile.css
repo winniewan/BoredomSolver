@@ -63,3 +63,8 @@ button {
     font-size: 15px;
 
 }
+section {
+  display:flex;
+  justify-content: center;
+  text-align: center;
+}
