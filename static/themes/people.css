@@ -18,7 +18,12 @@
 
 td {
   font-size: 30px;
-
+  border: none;
+  padding: 10px 25px;
+  text-align: center;
+  max-width: 400px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 th {
