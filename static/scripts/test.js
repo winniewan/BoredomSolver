@@ -1,4 +1,4 @@
-window.onscroll = function() {myFunction()};
+
 
 var navbar = document.getElementById('navbar');
 
@@ -80,5 +80,5 @@ var navbar = document.getElementById('navbar');
       });
 
     });
-    map.fitBounds(bounds);
+
   }
