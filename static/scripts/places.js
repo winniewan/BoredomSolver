@@ -1,7 +1,7 @@
 function initAutocomplete() {
       var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 40.7128, lng: -74.0060},
-        zoom: 18,
+        zoom: 15,
         mapTypeId: 'roadmap'
       });
 
@@ -24,7 +24,10 @@ function initAutocomplete() {
 
         if (places.length == 0) {
           return;
+          }
+
         }
+
 
         // Clear out the old markers.
         markers.forEach(function(marker) {
@@ -35,6 +38,13 @@ function initAutocomplete() {
         // For each place, get the icon, name and location.
         var bounds = new google.maps.LatLngBounds();
         places.forEach(function(place) {
+          marker = new google.maps.Marker({
+            map: map,
+            icon: icon,
+            title: place.name,
+            position: place.geometry.location
+          });
+
           if (!place.geometry) {
             console.log("Returned place contains no geometry");
             return;
@@ -46,22 +56,29 @@ function initAutocomplete() {
             anchor: new google.maps.Point(17, 34),
             scaledSize: new google.maps.Size(25, 25)
           };
-
+          markers.push(marker);
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
           // Create a marker for each place.
-          markers.push(new google.maps.Marker({
-            map: map,
-            icon: icon,
-            title: place.name,
-            position: place.geometry.location
-          }));
 
           if (place.geometry.viewport) {
             // Only geocodes have viewport.
             bounds.union(place.geometry.viewport);
-          } else {
+          }
+          else {
             bounds.extend(place.geometry.location);
           }
+          console.log(place.geometry.location);
+          var desLocation = place.geometry.location;
+
+          var link = 'https://www.google.com/maps/search/?api=1&query='+desLocation.lat()+','+desLocation.lng();
+          console.log(link);
+          var infowindow = new google.maps.InfoWindow(){
+          content: link
+          map.fitBounds(bounds);
+        }
+            });
+
+
         });
-        map.fitBounds(bounds);
-      });
-    }
